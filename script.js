@@ -14,23 +14,28 @@ function getSeasonAndEpisodeFormat(episode) {
 
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
-  rootElem.textContent = `Got ${episodeList.length} episode(s)`;
+  // rootElem.textContent = `Got ${episodeList.length} episode(s)`;
 
   episodeList.forEach((episode) => {
+    // add section for each episode
+    const section = document.createElement("section");
+    rootElem.appendChild(section);
+
     // add episode's name and the season
-    const episodeName = document.createElement("h5");
+    const episodeName = document.createElement("p");
     episodeName.innerText = `${getSeasonAndEpisodeFormat(episode)}: ${
       episode.name
     }`;
-    rootElem.appendChild(episodeName);
+    section.appendChild(episodeName);
 
     // add the image
     const image = document.createElement("img");
     image.src = episode.image.medium;
-    rootElem.appendChild(image);
+    section.appendChild(image);
 
     //add the paragraph
-    rootElem.innerHTML += episode.summary;
+    section.innerHTML += episode.summary;
+   
   });
 }
 
